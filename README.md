@@ -55,6 +55,17 @@ Clamshell is not signed with an Apple Developer ID yet, so macOS warns the first
 - **macOS 15 and later:** open the app once, then go to *System Settings → Privacy & Security*, scroll down and click *Open Anyway*.
 - **macOS 14 and earlier:** right-click the app and choose *Open*.
 
+### Homebrew
+
+```bash
+brew install --cask smallja0605/clamshell/clamshell
+```
+
+That adds the [`smallja0605/homebrew-clamshell`](https://github.com/smallja0605/homebrew-clamshell) tap and installs the app into *Applications*.
+The first-open warning above applies here too. Update with `brew upgrade --cask clamshell`. To uninstall, first choose
+*Remove Claude Code hooks…* from Clamshell's menu (so no hook is left pointing at a missing app), then
+`brew uninstall --cask clamshell` (add `--zap` to also delete its settings and data).
+
 ### Build from source
 
 ```bash
@@ -207,6 +218,9 @@ Claude 閒置時選單列上完全沒有東西（也可以勾選「永遠顯示�
 ./scripts/build-app.sh      # 產生 dist/Clamshell.app（自己編譯的 App 不會有下載警告）
 open dist/Clamshell.app
 ```
+
+也可以用 Homebrew 安裝：`brew install --cask smallja0605/clamshell/clamshell`（更新用 `brew upgrade --cask clamshell`；
+解除安裝前請先在選單按「移除 Claude Code 連線…」，再執行 `brew uninstall --cask clamshell`）。
 
 下載來的 App 因為還沒有 Apple 開發者簽章，第一次開啟 macOS 會警告：**macOS 15 以後**請先開一次，再到「系統設定 → 隱私權與安全性」往下捲，
 按「仍要打開」；**macOS 14 以前**對 App 按右鍵 → 打開。
