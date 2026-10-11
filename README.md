@@ -45,13 +45,25 @@ Status text is shown in Traditional Chinese or English, following your system la
 
 Requires macOS 13 or later (Apple silicon or Intel).
 
+### Download
+
+Get `Clamshell-<version>.dmg` from the [Releases](../../releases) page, open it and drag Clamshell to *Applications*. Check the download
+against `SHA256SUMS.txt` if you like (`shasum -a 256 -c SHA256SUMS.txt`).
+
+Clamshell is not signed with an Apple Developer ID yet, so macOS warns the first time you open it:
+
+- **macOS 15 and later:** open the app once, then go to *System Settings → Privacy & Security*, scroll down and click *Open Anyway*.
+- **macOS 14 and earlier:** right-click the app and choose *Open*.
+
+### Build from source
+
 ```bash
 git clone <this repository> && cd clamshell
 ./scripts/build-app.sh          # builds dist/Clamshell.app (ad-hoc signed — fine for your own Mac)
 open dist/Clamshell.app
 ```
 
-The first time you open an app that isn't notarized, macOS asks you to confirm: right-click it, choose *Open*.
+An app you built yourself is not quarantined, so it opens without the warning above.
 
 On first launch Clamshell asks before it touches anything. If you agree, it adds a few hooks to
 `~/.claude/settings.json` (a backup is saved next to it as `settings.json.bak-clamshell`). The hooks run a small native
@@ -189,10 +201,15 @@ Claude 閒置時選單列上完全沒有東西（也可以勾選「永遠顯示�
 
 **安裝**（需要 macOS 13 以上）
 
+可以從 [Releases](../../releases) 下載 `Clamshell-<版本>.dmg`，或自己編譯：
+
 ```bash
-./scripts/build-app.sh      # 產生 dist/Clamshell.app
-open dist/Clamshell.app     # 第一次請對它按右鍵 → 打開
+./scripts/build-app.sh      # 產生 dist/Clamshell.app（自己編譯的 App 不會有下載警告）
+open dist/Clamshell.app
 ```
+
+下載來的 App 因為還沒有 Apple 開發者簽章，第一次開啟 macOS 會警告：**macOS 15 以後**請先開一次，再到「系統設定 → 隱私權與安全性」往下捲，
+按「仍要打開」；**macOS 14 以前**對 App 按右鍵 → 打開。
 
 第一次開啟時，Clamshell 會先詢問，你同意才會在 `~/.claude/settings.json` 加入 hook（會先備份成
 `settings.json.bak-clamshell`），不需要安裝 Node.js；隨時可以從選單「移除 Claude Code 連線…」拿掉。
